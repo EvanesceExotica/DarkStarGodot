@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Player/SpacetimeSlingshot.gd" type="Script" id=3]
+[ext_resource path="res://Player/Hook/Hook.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 37.0746
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Player" type="RigidBody2D"]
+position = Vector2( 303.763, 316.623 )
+gravity_scale = 0.0
+linear_damp = 0.0
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="SpacetimeSlingshot" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="SlingLine" type="Line2D" parent="SpacetimeSlingshot"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+width_curve = SubResource( 2 )
+
+[node name="Hook" parent="." instance=ExtResource( 4 )]

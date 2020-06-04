@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Rooms/Lights/LightCookie.png" type="Texture" id=1]
+[ext_resource path="res://EffectLibrary/ParticleTextures2/Static/Halos/Halo2.png" type="Texture" id=2]
+
+
+
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.373272, 0.672811, 1 )
+colors = PoolColorArray( 0, 0.929412, 0.623529, 0, 0, 1, 0.671875, 1, 0.00390625, 1, 0.766541, 1, 0, 0.180392, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.525 ), 0.0, 0.0, 0, 0, Vector2( 0.495833, 0.715909 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+trail_size_modifier = SubResource( 6 )
+emission_shape = 2
+emission_box_extents = Vector3( 5, 5, 5 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 6.25
+angle_random = 0.63
+scale = 5.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="CanvasItemMaterial" id=8]
+blend_mode = 1
+
+[node name="Node2D" type="Node2D"]
+__meta__ = {
+"_editor_description_": "Radiation particle effect"
+}
+
+[node name="Particles2D" type="Particles2D" parent="."]
+visible = false
+amount = 80
+lifetime = 3.0
+explosiveness = 0.01
+process_material = SubResource( 7 )
+
+[node name="Particles2D2" type="Particles2D" parent="."]
+material = SubResource( 8 )
+amount = 9
+lifetime = 4.0
+preprocess = 3.0
+explosiveness = 0.01
+process_material = SubResource( 7 )
+texture = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+visible = false
+texture = ExtResource( 1 )
+color = Color( 0.121569, 1, 0.835294, 1 )

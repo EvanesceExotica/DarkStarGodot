@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://EffectLibrary/ParticleEffects/Stink.tscn" type="PackedScene" id=1]
+[ext_resource path="res://EffectLibrary/ParticleEffects/Contamination.tscn" type="PackedScene" id=2]
+[ext_resource path="res://EffectLibrary/ParticleEffects/Ice.tscn" type="PackedScene" id=3]
+[ext_resource path="res://EffectLibrary/ParticleEffects/Fire.tscn" type="PackedScene" id=4]
+[ext_resource path="res://EffectLibrary/EffectLibrary.gd" type="Script" id=5]
+
+[node name="EffectLibrary" type="Node2D"]
+script = ExtResource( 5 )
+effectLibary = {
+"contamination": ExtResource( 2 ),
+"fire": ExtResource( 4 ),
+"ice": ExtResource( 3 ),
+"stink": ExtResource( 1 )
+}

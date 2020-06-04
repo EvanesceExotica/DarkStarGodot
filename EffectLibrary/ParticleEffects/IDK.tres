@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://EffectLibrary/ParticleEffects/DeformShader.shader" type="Shader" id=1]
+[ext_resource path="res://Resources/Shaders/ShaderTextures/687474703a2f2f692e696d6775722e636f6d2f324f584c7743332e706e67 (1).png" type="Texture" id=2]
+
+
+
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/deformAmount = -0.063
+shader_param/deform_speed = 4.0
+shader_param/animate = true
+shader_param/u_resolution = Vector2( 1920, 1080 )
+shader_param/tex = ExtResource( 2 )

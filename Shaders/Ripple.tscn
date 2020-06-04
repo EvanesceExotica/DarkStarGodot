@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Shaders/RippleShader.shader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/speed = 0.5
+shader_param/volume = 6.0
+shader_param/volume1 = 0.3
+shader_param/volume2 = 0.7
+shader_param/volume3 = 0.3
+
+[node name="Node2D" type="Sprite"]
+material = SubResource( 1 )
+position = Vector2( 149.68, 135.09 )
+scale = Vector2( 5.67749, 5.22156 )
+texture = ExtResource( 1 )
