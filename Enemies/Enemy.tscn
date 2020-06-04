@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://Characters/ZippableObject.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Characters/BashableObject.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -25,5 +26,7 @@ texture = ExtResource( 1 )
 collision_layer = 2
 collision_mask = 2
 canBeHooked = true
+
+[node name="BashableObject" parent="." instance=ExtResource( 4 )]
 
 [editable path="ZippableObject"]

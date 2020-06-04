@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 var energyValue = 0.5
-
+onready var bashableObject = get_node("BashableObject")
 func is_class(type):
 	return type == "Enemy" or .is_class(type)
 
@@ -21,9 +21,8 @@ func _ready():
 func BurstAndDropSoul():
 	pass
 
-func GetHooked():
+func RipOutSoul():
 	pass
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
