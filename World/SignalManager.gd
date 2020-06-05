@@ -2,3 +2,4 @@ extends Node
 
 signal PlayerLeftZone
 signal PlayerReenteredZone
+signal PlayerDied

@@ -3,8 +3,6 @@
 [ext_resource path="res://EffectLibrary/ParticleEffects/ScrollTexture.shader" type="Shader" id=1]
 [ext_resource path="res://BackgroundEffects/NebulaTexture.png" type="Texture" id=2]
 
-
-
 [resource]
 shader = ExtResource( 1 )
 shader_param/direction = Vector2( 1, 0 )

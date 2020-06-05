@@ -21,12 +21,14 @@ _global_script_class_icons={
 [application]
 
 config/name="DarkStar"
+run/main_scene="res://Playground.tscn"
 boot_splash/bg_color=Color( 0.0196078, 0.0156863, 0.129412, 1 )
 config/icon="res://icon.png"
 
 [autoload]
 
 SignalManager="*res://World/SignalManager.gd"
+System="*res://System.gd"
 
 [input]
 
@@ -62,5 +64,6 @@ ui_bash={
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_clear_color=Color( 0.105882, 0.0509804, 0.176471, 1 )
 environment/default_environment="res://default_env.tres"

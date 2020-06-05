@@ -9,8 +9,12 @@ extends Area2D
 func _ready():
 	pass # Replace with function body.
 
-func _on_SafeZone_body_exited():
-	SignalManager.emit_sigal("PlayerLeftZone")
+func _on_SafeZone_body_entered(body):
+	print("Something left us ")
+	SignalManager.emit_signal("PlayerReenteredZone")
+func _on_SafeZone_body_exited(body):
+	print("Something left us ")
+	SignalManager.emit_signal("PlayerLeftZone")
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

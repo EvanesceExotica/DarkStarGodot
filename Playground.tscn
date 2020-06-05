@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://DarkStar/DarkStar.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://BackgroundEffects/StarViewBackground.tscn" type="PackedScene" id=7]
 [ext_resource path="res://BackgroundEffects/StarsBackground.png" type="Texture" id=8]
 [ext_resource path="res://World/SafeZone.tscn" type="PackedScene" id=9]
+[ext_resource path="res://PlayerCamera.gd" type="Script" id=10]
+[ext_resource path="res://Shaders/DistortMaskView.tscn" type="PackedScene" id=11]
 
 [node name="Playground" type="Node2D"]
 
@@ -18,8 +20,8 @@ position = Vector2( 1025.16, 599.073 )
 scale = Vector2( 1.06678, 1.10503 )
 
 [node name="StarsBackground" type="Sprite" parent="."]
-position = Vector2( 1026.45, 560.973 )
-scale = Vector2( 1.08825, 1.20362 )
+position = Vector2( 1015.18, 582.626 )
+scale = Vector2( 1.66246, 2.34195 )
 texture = ExtResource( 8 )
 
 [node name="planets" type="Sprite" parent="."]
@@ -36,13 +38,30 @@ position = Vector2( 103.63, 460.201 )
 [node name="DarkStar" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1032.26, 613.838 )
 
+[node name="Light2D" parent="DarkStar" index="3"]
+texture_scale = 0.72
+
 [node name="watereffect" parent="." instance=ExtResource( 5 )]
 modulate = Color( 1, 1, 1, 0.109804 )
-position = Vector2( 1027.04, 599.701 )
-scale = Vector2( 31.8613, 18.6986 )
+position = Vector2( 1034.29, 613.838 )
+scale = Vector2( 39.333, 33.0478 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 135.63, 392.32 )
 
 [node name="SafeZone" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1034.29, 613.838 )
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 10 )
+targetPath = NodePath("../Player")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0, 0.00392157, 0.0117647, 1 )
+
+[node name="DistortMaskView" parent="." instance=ExtResource( 11 )]
+
+[editable path="DarkStar"]
+
+[editable path="SafeZone"]

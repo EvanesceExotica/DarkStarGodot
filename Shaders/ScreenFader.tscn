@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ScreenFader.gd" type="Script" id=1]
+[ext_resource path="res://EffectLibrary/black.png" type="Texture" id=2]
+
+[node name="ScreenFader" type="TextureRect"]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 2 )
+stretch_mode = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

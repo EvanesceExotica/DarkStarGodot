@@ -19,9 +19,11 @@ func _input(event):
 
 
 func StartBash():
+	System.SlowDownTime()
 	player.linear_velocity = Vector2(0, 0)	
 	bashableEnemy.linear_velocity = Vector2(0, 0)
 	yield(self, "bashReleased")
+	System.SpeedUpTime()
 	bashableEnemy.bashableObject.BashMe()
 
 func _ready():

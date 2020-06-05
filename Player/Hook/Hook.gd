@@ -2,17 +2,20 @@ extends RigidBody2D
 
 onready var player = get_parent()
 onready var chain = get_node("Chain")
+onready var hookOrigin = player.get_node("HookOrigin")
 # var a = 2
 # var b = "text"
+var originPosition
 var firing = false
 var retracting = false
 var chainMaxLength = 500
 var throwSpeed = 400
 var hasObjectHooked = false
-
+onready var collisionShape = get_node("CollisionShape2D")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.mode = RigidBody2D.MODE_STATIC
+	collisionShape.disabled = true
 	pass # Replace with function body.
 
 func _input(event):
@@ -24,6 +27,8 @@ func BeginFiring():
 	#set firing to true and set the initial position to begin firing
 	#velocity only needs to be set once!	
 	self.mode = RigidBody2D.MODE_RIGID
+	collisionShape.disabled = false
+	
 	pass # Replace with function body.
 	firing = true
 	self.global_position = player.global_position
@@ -36,9 +41,13 @@ func BeginFiring():
 	
 	
 func ChainExtending():
-	chain.add_point(Vector2(0, 0))
+	#chain.add_point(Vector2(0, 0))
 	#chain.points[0] = player.global_position
-	chain.points[1] = self.position
+	#print(self.position)
+	print(hookOrigin.position)
+	chain.points[0] = to_local(hookOrigin.global_position)#self.global_position
+	chain.points[1] = to_local(self.global_position)
+	#chain.points[1] = Vector2(0, 0)
 	#move the chain in the direction of the mouse
 	pass	
 	# print("Trans is " + str(trans))
@@ -86,6 +95,7 @@ func _process(_delta):
 			retracting = false
 			hasObjectHooked = false
 			self.mode = RigidBody2D.MODE_STATIC
+			collisionShape.disabled = true
 
 
 
