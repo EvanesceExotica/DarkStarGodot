@@ -22,6 +22,7 @@ func BurstAndDropSoul():
 	pass
 
 func RipOutSoul():
+	print("OUR SOUL GOT RIPPED OUT")
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -4,12 +4,15 @@
 [ext_resource path="res://EffectLibrary/ParticleTextures2/Static/Symbols/Circle.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 272.805
+radius = 117.23
 
 [node name="SoulNode" type="Area2D"]
+position = Vector2( 495.324, 289.347 )
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -6.10352e-05 )
+scale = Vector2( 0.466071, 0.466071 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -18,3 +21,4 @@ shape = SubResource( 1 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
+[connection signal="input_event" from="." to="." method="_on_SoulNode_input_event"]

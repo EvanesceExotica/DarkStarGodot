@@ -21,6 +21,7 @@ func ShrinkFromExistence():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.scale = Vector2(0, 0)
+	StartLifeTimer()
 	pass # Replace with function body.
 
 func ScaleWithTimeScale(value):

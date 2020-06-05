@@ -9,4 +9,6 @@ func SpeedUpTime():
 
 func _ready():
 	pass # Replace with function body.
-
+func ScaleWithTimeScale(value):
+	return value*0.3
+	
