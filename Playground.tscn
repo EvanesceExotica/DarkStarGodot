@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://DarkStar/DarkStar.tscn" type="PackedScene" id=2]
@@ -11,8 +11,22 @@
 [ext_resource path="res://World/SafeZone.tscn" type="PackedScene" id=9]
 [ext_resource path="res://PlayerCamera.gd" type="Script" id=10]
 [ext_resource path="res://Shaders/DistortMaskView.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Shaders/Displacement.shader" type="Shader" id=12]
+[ext_resource path="res://Untitled.png" type="Texture" id=13]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("DistortMaskView/Viewport")
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 12 )
+shader_param/displacement_amount = 12.539
+shader_param/displacement_mask = SubResource( 1 )
 
 [node name="Playground" type="Node2D"]
+
+[node name="DistortMaskView" parent="." instance=ExtResource( 11 )]
+mouse_filter = 2
 
 [node name="Screen" parent="." instance=ExtResource( 7 )]
 visible = false
@@ -54,13 +68,33 @@ position = Vector2( 1034.29, 613.838 )
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 current = true
+limit_left = -525
+limit_top = -600
+limit_right = 2600
+limit_bottom = 1600
 script = ExtResource( 10 )
 targetPath = NodePath("../Player")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0, 0.00392157, 0.0117647, 1 )
 
-[node name="DistortMaskView" parent="." instance=ExtResource( 11 )]
+[node name="PostProcessLayer" type="CanvasLayer" parent="."]
+
+[node name="GameView" type="TextureRect" parent="PostProcessLayer"]
+visible = false
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 256.0
+margin_bottom = 120.0
+texture = ExtResource( 13 )
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[editable path="DistortMaskView"]
 
 [editable path="DarkStar"]
 

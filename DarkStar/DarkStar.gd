@@ -10,18 +10,23 @@ onready var hunger = get_node("Hunger")
 #you have to rip out the souls of the enemies
 
 func _ready():
+	System.set("darkStar", self)
 #	timer = get_node("Timer")
 	SignalManager.connect("PlayerDied", self, "HandlePlayerDeath")
 
 func HandlePlayerDeath():
 	Shrink(0.5)
 
+
 func _on_DarkStar_body_entered(body):
-	print(body.name + " entered me")
-	if body.is_class("Enemy"):#get_type() == "Enemy":
+	if body.is_in_group("Soulless"):
 		Grow(body.energyValue)
 		body.queue_free()
 		hunger.AdjustHunger(10)
+	# if body.is_class("Enemy"):#get_type() == "Enemy":
+	# 	Grow(body.energyValue)
+	# 	body.queue_free()
+	# 	hunger.AdjustHunger(10)
 
 func _on_DarkStar_body_exited(_body):
 	pass

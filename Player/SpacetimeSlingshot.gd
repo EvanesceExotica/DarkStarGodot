@@ -68,12 +68,12 @@ func LaunchSlingshot():
 	launching = true
 
 func _process(delta):
-	if Input.is_action_just_pressed("left_click") && !priming: 
+	if Input.is_action_just_pressed("left_click") && !priming && !player.bash.bashing: 
 		InitializeSlingshot()
 	if priming:
 		PrimeSlingshot()
-	if Input.is_action_just_released("left_click") && priming:
+	if Input.is_action_just_released("left_click") && priming && !player.bash.bashing:
 		priming = false
 		LaunchSlingshot()
-	if Input.is_action_just_pressed("right_click") && priming:
+	if Input.is_action_just_pressed("right_click") && priming && !player.bash.bashing:
 		StopSlingshot()

@@ -8,18 +8,18 @@
 [ext_resource path="res://DarkStar/Hunger.gd" type="Script" id=6]
 [ext_resource path="res://EffectLibrary/ParticleTextures2/Static/Symbols/Circle.png" type="Texture" id=7]
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
 shader_param/displacement_amount = 5.0
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 204.83
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 852.379
 
 [node name="DarkStar" type="Area2D"]
-material = SubResource( 4 )
+material = SubResource( 1 )
 position = Vector2( 505.048, 281.887 )
 gravity_vec = Vector2( 0, 0 )
 gravity = 1.0
@@ -30,7 +30,7 @@ script = ExtResource( 2 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.317647, 0.32549, 1, 1 )
@@ -76,6 +76,5 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="Hunger"]
-[connection signal="area_entered" from="." to="." method="_on_DarkStar_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_DarkStar_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_DarkStar_body_exited"]

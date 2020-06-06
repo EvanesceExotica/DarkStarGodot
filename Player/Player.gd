@@ -8,12 +8,14 @@ var player = get_parent()
 var basePosition
 var mousePosition
 onready var slingShot = get_node("SpacetimeSlingshot")
+onready var bash = get_node("Bash")
 onready var darkStar = get_parent().get_node("DarkStar")
 onready var darkStarPosition = darkStar.global_position 
 var timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	System.set("player", self)
 	pass # Replace with function body.
 	basePosition = self.global_position 
 	SignalManager.connect("PlayerLeftZone", self, "CountDownToDeath")
@@ -23,6 +25,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func TakeDamage(amount):
+	emit_signal("PlayerTookDamage", amount)
+
 
 func ResetVoidDeathTimer():
 	if timer != null:
@@ -38,7 +44,9 @@ func CountDownToDeath():
 	timer.start()
 
 func ResetPosition():
+	#reset to start position and set velocity to zero
 	self.global_position = darkStarPosition
+	self.linear_velocity = Vector2(0, 0)
 
 func Die():
 	print("Player died!")
@@ -57,6 +65,6 @@ func _process(delta):
 	#if Input.is_action_pressed("right_click"):
 
 func _physics_process(delta):
-	if !slingShot.priming && !slingShot.launching && Input.is_action_pressed("right_click"):
+	if Input.is_action_pressed("right_click") && !slingShot.priming && !slingShot.launching && !bash.bashing:
 		FollowMouse()
 		self.global_position = basePosition

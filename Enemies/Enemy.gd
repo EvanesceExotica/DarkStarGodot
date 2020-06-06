@@ -2,6 +2,7 @@ extends RigidBody2D
 
 var energyValue = 0.5
 onready var bashableObject = get_node("BashableObject")
+onready var soulReaper = get_node("SoulReaper")
 func is_class(type):
 	return type == "Enemy" or .is_class(type)
 
@@ -23,6 +24,8 @@ func BurstAndDropSoul():
 
 func RipOutSoul():
 	print("OUR SOUL GOT RIPPED OUT")
+	self.modulate = Color.aliceblue
+	add_to_group("Soulless")
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

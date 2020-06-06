@@ -33,6 +33,7 @@ func BurnUpFuel():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Tween.connect("tween_completed", self, "CheckTweenCompletion")
+	SignalManager.connect("PlayerTookDamage", self, "AdjustHunger")
 	DrainHunger()
 	pass # Replace with function body.
 

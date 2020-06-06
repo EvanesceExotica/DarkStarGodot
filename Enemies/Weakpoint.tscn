@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Enemies/Weakpoint.gd" type="Script" id=1]
 [ext_resource path="res://EffectLibrary/ParticleTextures2/Static/Symbols/Circle.png" type="Texture" id=2]
@@ -8,11 +8,41 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 52.4666
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=2]
+resource_name = "ChargeUp"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.129412, 0.129412, 0.219608, 1 ), Color( 0.772549, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Fire"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Beam:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 0.670588, 0, 0, 1 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
 resource_name = "Idle"
 
-[sub_resource type="Animation" id=2]
-resource_name = "OpenEye"
+[sub_resource type="Animation" id=5]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -27,8 +57,7 @@ tracks/0/keys = {
 "values": [ Color( 0.129412, 0.129412, 0.219608, 1 ), Color( 0.117647, 0.87451, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Spike"
+[sub_resource type="Animation" id=6]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Spike:position")
@@ -67,20 +96,26 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="ParticlesMaterial" id=7]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="Gradient" id=8]
 offsets = PoolRealArray( 0, 0.878378, 1 )
 colors = PoolColorArray( 0, 0.947266, 1, 1, 0, 0.942856, 1, 0.976351, 0, 0.760784, 1, 0 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
 
-[sub_resource type="Curve" id=6]
+[sub_resource type="Curve" id=10]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=7]
-curve = SubResource( 6 )
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=12]
 emission_shape = 2
 emission_box_extents = Vector3( 2, 2, 1 )
 flag_disable_z = true
@@ -91,8 +126,8 @@ initial_velocity = 30.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.1
-scale_curve = SubResource( 7 )
-color_ramp = SubResource( 5 )
+scale_curve = SubResource( 11 )
+color_ramp = SubResource( 9 )
 
 [node name="Weakpoint" type="Area2D"]
 position = Vector2( 391.551, 202.594 )
@@ -105,18 +140,25 @@ scale = Vector2( 0.182761, 0.182761 )
 texture = ExtResource( 2 )
 
 [node name="Clickable" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 9 )
-anims/OpenEye = SubResource( 2 )
-anims/Spike = SubResource( 3 )
+anims/ChargeUp = SubResource( 2 )
+anims/Fire = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/OpenEye = SubResource( 5 )
+anims/Spike = SubResource( 6 )
 
 [node name="Spike" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 0, 162.079 )
 scale = Vector2( 0.5, 0.535944 )
 texture = ExtResource( 3 )
+
+[node name="ChargeParticles" type="Particles2D" parent="."]
+scale = Vector2( 0.182761, 0.182761 )
+process_material = SubResource( 7 )
 
 [node name="SoulLeakage" type="Particles2D" parent="."]
 position = Vector2( 0, -16.5347 )
@@ -125,10 +167,17 @@ amount = 80
 lifetime = 1.5
 speed_scale = 3.04
 explosiveness = 0.24
-process_material = SubResource( 8 )
+process_material = SubResource( 12 )
 texture = ExtResource( 4 )
 
 [node name="Timer" type="Timer" parent="."]
-[connection signal="input_event" from="." to="." method="_on_Weakpoint_input_event"]
+
+[node name="Beam" type="Line2D" parent="."]
+modulate = Color( 1, 0, 0, 0 )
+points = PoolVector2Array( 0, 0, 80, 0 )
+default_color = Color( 0.878431, 0, 0, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 [connection signal="mouse_entered" from="." to="." method="_on_Weakpoint_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Weakpoint_mouse_exited"]

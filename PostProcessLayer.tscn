@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Shaders/Displacement.shader" type="Shader" id=1]
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("DistortMaskView/Viewport")
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/displacement_amount = 12.539
+shader_param/displacement_mask = SubResource( 2 )
+
+[node name="PostProcessLayer" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
