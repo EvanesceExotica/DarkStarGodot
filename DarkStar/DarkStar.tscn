@@ -1,16 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://DarkStar/star_blue_giant04.png" type="Texture" id=1]
 [ext_resource path="res://DarkStar/DarkStar.gd" type="Script" id=2]
-[ext_resource path="res://Shaders/Displacement.shader" type="Shader" id=3]
 [ext_resource path="res://DarkStar/star_white_giant03.png" type="Texture" id=4]
 [ext_resource path="res://DarkStar/DoomHandler.gd" type="Script" id=5]
 [ext_resource path="res://DarkStar/Hunger.gd" type="Script" id=6]
 [ext_resource path="res://EffectLibrary/ParticleTextures2/Static/Symbols/Circle.png" type="Texture" id=7]
-
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 3 )
-shader_param/displacement_amount = 5.0
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 204.83
@@ -18,8 +13,35 @@ radius = 204.83
 [sub_resource type="CircleShape2D" id=3]
 radius = 852.379
 
+[sub_resource type="Animation" id=4]
+resource_name = "DamageFlash"
+length = 0.48
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.317647, 0.32549, 1, 1 ), Color( 0.717647, 0, 0, 1 ), Color( 0.317647, 0.32549, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.478431, 0.388235, 1, 1 ), Color( 0.745098, 0, 0, 1 ), Color( 0.478431, 0.388235, 1, 1 ) ]
+}
+
 [node name="DarkStar" type="Area2D"]
-material = SubResource( 1 )
 position = Vector2( 505.048, 281.887 )
 gravity_vec = Vector2( 0, 0 )
 gravity = 1.0
@@ -76,5 +98,8 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="Hunger"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DamageFlash = SubResource( 4 )
 [connection signal="body_entered" from="." to="." method="_on_DarkStar_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_DarkStar_body_exited"]

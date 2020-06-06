@@ -32,6 +32,7 @@ System="*res://System.gd"
 
 [debug]
 
+gdscript/warnings/enable=false
 gdscript/warnings/unassigned_variable=false
 gdscript/warnings/unassigned_variable_op_assign=false
 gdscript/warnings/unused_variable=false

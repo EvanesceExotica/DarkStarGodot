@@ -8,11 +8,17 @@ extends Area2D
 #onready var timer = get_node("Timer")
 onready var hunger = get_node("Hunger")
 #you have to rip out the souls of the enemies
+onready var anim = get_node("AnimationPlayer")
 
 func _ready():
 	System.set("darkStar", self)
 #	timer = get_node("Timer")
+	SignalManager.connect("PlayerTookDamage", self, "DamageFlash")
 	SignalManager.connect("PlayerDied", self, "HandlePlayerDeath")
+
+
+func DamageFlash(_none):
+	anim.play("DamageFlash")
 
 func HandlePlayerDeath():
 	Shrink(0.5)

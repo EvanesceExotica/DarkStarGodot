@@ -27,6 +27,7 @@ var spikedPoints = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	for point in weakPoints:
 		if point is Timer:
 			weakPoints.erase(point)
@@ -55,6 +56,7 @@ func ActivateWeakPoints():
 
 	#choose a random weakpoint from the list to activate
 	var weakPointToActivate = remainingWeakpoints[randomIndex]
+	print(str(weakPointSpawnAmount) + " vs " + str(chargeUpPoint))
 	if weakPointSpawnAmount == chargeUpPoint:
 		remainingWeakpoints.erase(weakPointToActivate)
 		remainingWeakpoints.push_back(weakPointToActivate)
@@ -76,7 +78,7 @@ func CheckWeakPoints():
 func ChooseFirePoint():
 	#choosing on which weakpoint activation to try and fire, not which weakpoint to fire from
 	#should be four.
-	var chargeUpPoint = randi()%maxWeakPointsSpawned+1
+	chargeUpPoint = randi()%3
 
 func BeginReapingSoul():
 	remainingWeakpoints = [] + weakPoints

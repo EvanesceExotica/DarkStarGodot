@@ -20,7 +20,7 @@ func ExposeWeakPoint():
 	print("Can click now!" + "Disabled is " + str(clickable.disabled))
 
 func StartTimerToClose():
-	$Timer.set_wait_time(0.5)
+	$Timer.set_wait_time(System.ScaleWithTimeScale(0.5))
 	$Timer.connect("timeout", self, "CloseWeakPoint")
 	$Timer.one_shot = true
 	$Timer.start()
@@ -38,12 +38,11 @@ func SpikeWeakPoint():
 	emit_signal("WeakPointSpiked", self)
 
 func _on_Weakpoint_mouse_entered():
-	print("Mouse in!")
 	mouseIn = true
-	pass
+
 func _on_Weakpoint_mouse_exited():
 	mouseIn = false
-	pass
+
 
 func _input(event):
 	#this is just waiting for left click not mouse in 
@@ -55,11 +54,11 @@ func _input(event):
 func _ready():
 	anim.playback_speed = anim.playback_speed/0.3
 	clickable.disabled = true
-	pass # Replace with function body.
 
 
 func ChargeUp():
 	print("Preparing to fire at player")
+	clickable.disabled = false
 	anim.play("ChargeUp")
 	anim.connect("animation_finished", self, "CheckAnim")
 
@@ -70,9 +69,10 @@ func CheckAnim(animation):
 func FireAtPlayer():
 	print("Firing at player")
 	beam.add_point(to_local(self.global_position))
-	beam.add_point(Vector2(80, 0))
-	#beam.add_point(to_local(System.player.global_position))
+	#beam.add_point(Vector2(80, 0))
+	beam.add_point(to_local(System.player.global_position))
 	anim.play("Fire")
+	SignalManager.emit_signal("PlayerTookDamage", -50)
 # func _on_Weakpoint_input_event(viewport, event, shape_idx):
 # 	if event is InputEventMouseButton:
 # 		if (event.is_pressed() and event.button_index == BUTTON_LEFT):
