@@ -54,36 +54,36 @@ func AddNewChainSegment(enemy):
 
 func ChainEnemy(enemy):
 	#maybe being chained slows an enemies speed drastically?
-	chainedEnemies.append(enemy)
+	chainedEnemies.push_front(enemy)
 	AddNewChainSegment(enemy)
 
 func BashBackIntoStar():
 	#this should, hopefully, force the player to travel back along the enemies they've chained, then drag them screaming into the star
+	segments.back().SetInactive()
 	for enemy in chainedEnemies:
-		$Tween.interpolate_property(System.player, "position", System.player.global_position, enemy.global_position, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Tween.interpolate_property(System.player, "position", System.player.global_position, enemy.global_position, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Tween.start()
 		yield($Tween, "tween_completed")
 		enemy.RipOutSoul()
+	$Tween.interpolate_property(System.player, "position", System.player.global_position, System.darkStar.global_position, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") && !firstChainCast:
 		StartChain()
+	elif event.is_action_pressed("ui_accept") && firstChainCast:
+		BashBackIntoStar()
 
 func CheckChildCollision(enemy):
 	#do stuff to enemy
 	print("Checking collision of " + str(enemy.name))
-	AddNewChainSegment(enemy)
+	ChainEnemy(enemy)
+	#AddNewChainSegment(enemy)
 
 func Cast():
 	pass
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	chaincast.connect("Collided", self, "CheckChildCollision")	
-	# var timer = Timer.new()
-	# timer.set_wait_time(1)
-	# timer.start()
-	# yield(timer, "timeout")
-	# StartChain()
 
 #func BashThroughEnemies():
 
