@@ -28,6 +28,10 @@ shader_param/displacement_mask = SubResource( 1 )
 [node name="DistortMaskView" parent="." instance=ExtResource( 11 )]
 mouse_filter = 2
 
+[node name="PlayerRemote" type="RemoteTransform2D" parent="DistortMaskView"]
+visible = false
+remote_path = NodePath("../../Player")
+
 [node name="Screen" parent="." instance=ExtResource( 7 )]
 visible = false
 position = Vector2( 1025.16, 599.073 )
@@ -47,7 +51,7 @@ texture = ExtResource( 6 )
 [node name="StarFieldBackground" parent="." instance=ExtResource( 4 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 103.63, 460.201 )
+position = Vector2( 0, 0 )
 
 [node name="DarkStar" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1032.26, 613.838 )
@@ -55,7 +59,7 @@ position = Vector2( 1032.26, 613.838 )
 [node name="Light2D" parent="DarkStar" index="3"]
 texture_scale = 0.72
 
-[node name="watereffect" parent="." instance=ExtResource( 5 )]
+[node name="RippleEffect" parent="." instance=ExtResource( 5 )]
 modulate = Color( 1, 1, 1, 0.109804 )
 position = Vector2( 1034.29, 613.838 )
 scale = Vector2( 39.333, 33.0478 )
