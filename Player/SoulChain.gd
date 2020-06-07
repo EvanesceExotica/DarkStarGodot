@@ -61,11 +61,23 @@ func BashBackIntoStar():
 	#this should, hopefully, force the player to travel back along the enemies they've chained, then drag them screaming into the star
 	segments.back().SetInactive()
 	for enemy in chainedEnemies:
+		#if distance is shorter, I want it to zoom the same speed
+		segments.back().endTarget = System.player
+		var distance = System.player.global_position.distance_to(enemy.global_position)
 		$Tween.interpolate_property(System.player, "position", System.player.global_position, enemy.global_position, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Tween.start()
 		yield($Tween, "tween_completed")
 		enemy.RipOutSoul()
+		segments.back().chain.visible = false
+		segments.pop_back()
+
+	#after this, all the enemies are done, so we're tweening back to the dark star, so we need to handle the last segment too
+	segments.back().endTarget = System.player
 	$Tween.interpolate_property(System.player, "position", System.player.global_position, System.darkStar.global_position, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.start()
+	yield($Tween, "tween_completed")
+	segments.back().chain.visible = false
+	segments.pop_back()
 
 func _input(event):
 	if event.is_action_pressed("ui_accept") && !firstChainCast:

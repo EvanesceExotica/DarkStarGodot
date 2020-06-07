@@ -25,6 +25,11 @@ func LinkToNewTarget(target):
 	print("Linked to new target")
 	endTarget = target
 
+func LinkToEnd():
+	var newPosition = Position2D.new()
+	System.darkStar.add_child(newPosition)
+	newPosition.global_position = System.player.global_position
+	endTarget = newPosition
 
 func SetInactive():
 	raycast.enabled = false

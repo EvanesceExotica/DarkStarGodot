@@ -24,7 +24,7 @@ func DrainHunger():
 	#bigger star gets faster it drains hunger?
 	#maybe keep feeding it to stave off disaster?
 	$Tween.stop_all()
-	$Tween.interpolate_property(hungerBar, "value", hungerBar.value, 0, 20, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property(hungerBar, "value", hungerBar.value, 0, 50, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 
 func BurnUpFuel():
