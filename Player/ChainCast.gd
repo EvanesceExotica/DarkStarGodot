@@ -7,7 +7,7 @@ extends Node2D
 onready var chain = get_node("Chain")
 onready var parent = get_parent()
 onready var raycast = get_node("RayCast2D")
-signal Colliding(enemy)
+signal Collided(enemy)
 var startTarget
 var endTarget
 
@@ -21,16 +21,22 @@ func Cast():
 	chain.points[0]=(to_local(startTarget.global_position))
 	chain.points[1]=(to_local(endTarget.global_position))
 
+func LinkToNewTarget(target):
+	print("Linked to new target")
+	endTarget = target
 
+
+func SetInactive():
+	raycast.enabled = false
+	chain.default_color = Color.red
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	# if self.is_colliding:
-
-	# 	print("Colliding with " + str(self.get_collider())
-	# if self.is_colliding && !parent.chainList.has(self.get_collider()):
-	# 	#if the raycast is colliding and this enemy isn't already in our chain
-	# 	var enemy = raycast.get_collider()
-	# 	emit_signal("Colliding", enemy)
+	if raycast.is_colliding():
+	#	print("Collding with " + str(raycast.get_collider().name))
+		if(!parent.chainedEnemies.has(raycast.get_collider())):
+		#if the raycast is colliding and this enemy isn't already in our chain
+			var enemy = raycast.get_collider()
+			emit_signal("Collided", enemy)
 	# pass

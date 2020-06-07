@@ -28,10 +28,6 @@ shader_param/displacement_mask = SubResource( 1 )
 [node name="DistortMaskView" parent="." instance=ExtResource( 11 )]
 mouse_filter = 2
 
-[node name="PlayerRemote" type="RemoteTransform2D" parent="DistortMaskView"]
-visible = false
-remote_path = NodePath("../../Player")
-
 [node name="Screen" parent="." instance=ExtResource( 7 )]
 visible = false
 position = Vector2( 1025.16, 599.073 )
@@ -51,7 +47,7 @@ texture = ExtResource( 6 )
 [node name="StarFieldBackground" parent="." instance=ExtResource( 4 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, 0 )
+position = Vector2( -88.4972, 392.32 )
 
 [node name="DarkStar" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1032.26, 613.838 )
@@ -97,6 +93,15 @@ flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Enemy2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 826.638, 118.097 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 439.826, 883.199 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1664.98, 357.262 )
 
 [editable path="DistortMaskView"]
 
