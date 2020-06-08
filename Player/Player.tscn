@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Characters/Bash.tscn" type="PackedScene" id=5]
 [ext_resource path="res://BackgroundEffects/RippleEmitter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Player/SoulChain.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Player/VFXContainer.gd" type="Script" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 37.0746
@@ -45,5 +46,12 @@ collision_mask = 2
 
 [node name="HookOrigin" type="Position2D" parent="."]
 
-[node name="RippleEmitter" parent="." instance=ExtResource( 6 )]
-visible = false
+[node name="VFXContainer" type="Node2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="RippleEmitter" parent="VFXContainer" instance=ExtResource( 6 )]
+emitting = false
+
+[node name="MapTransform" type="RemoteTransform2D" parent="."]
+
+[node name="CameraTransform" type="RemoteTransform2D" parent="."]

@@ -27,6 +27,7 @@ func InitializeSlingshot():
 	var mousePos = Vector2(0, 0)
 	var scaledValue
 	line.visible = true
+	System.SlowDownTime()
 
 func PrimeSlingshot():
 	# priming = true
@@ -58,6 +59,7 @@ func StopSlingshot():
 	priming = false
 
 func LaunchSlingshot():
+	System.SpeedUpTime()
 	line.visible = false
 	var mousePos = get_global_mouse_position()
 	var distance = player.global_position.distance_to(mousePos)

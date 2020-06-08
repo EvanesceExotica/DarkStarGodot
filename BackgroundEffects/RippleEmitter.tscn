@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://BackgroundEffects/Effects2/annulus-mask.png" type="Texture" id=1]
+[ext_resource path="res://EffectLibrary/ParticleTextures/circle_03.png" type="Texture" id=1]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.644444 )
@@ -25,6 +25,7 @@ scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
 
 [node name="RippleEmitter" type="Particles2D"]
+position = Vector2( 509.398, 295.71 )
 amount = 10
 lifetime = 5.0
 speed_scale = 3.85

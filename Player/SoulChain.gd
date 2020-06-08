@@ -42,10 +42,6 @@ func AddNewChainSegment(enemy):
 	segments.append(newChaincast)
 	newChaincast.startTarget = enemy
 	newChaincast.endTarget = System.player
-	# newRayCast.global_position = enemy.global_position 
-	# newRayCast.cast_to = to_local(System.player.global_position)
-	# raycast.chain.add_point(to_local(System.player.global_position))
-	# raycast.chain.add_point(to_local(System.player.global_position))
 	newChaincast.connect("Collided", self, "CheckChildCollision")	
 
 	#set this to the new active chaincast
