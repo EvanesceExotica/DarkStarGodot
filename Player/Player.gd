@@ -16,6 +16,8 @@ var timer
 onready var vfxContainer = get_node("VFXContainer")
 export var mapIcon: Resource
 onready var cameraTransform = $CameraTransform
+onready var emitter = get_node("VFXContainer/RippleEmitter")
+onready var distortionTransform = get_node("DistortionTransform")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,7 +26,11 @@ func _ready():
 	basePosition = self.global_position 
 	SignalManager.connect("PlayerLeftZone", self, "CountDownToDeath")
 	SignalManager.connect("PlayerReenteredZone", self, "ResetVoidDeathTimer")
-	vfxContainer.initializeRippleTrail()
+	#vfxContainer.initializeRippleTrail()
+	vfxContainer.remove_child(emitter)
+	ObjectHandler.handleDistortionEffect(emitter)
+	distortionTransform.remote_path = emitter.get_path()
+	emitter.emitting = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -81,7 +87,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("right_click") && !slingShot.priming && !slingShot.launching && !bash.bashing:
 		FollowMouse()
 		self.global_position = basePosition
-		vfxContainer.makeTrail()
+		#vfxContainer.makeTrail()
 		# if !vfxContainer.rippling:
 		# 	vfxContainer.rippling = true
 		# 	#vfxContainer.makeTrail()
