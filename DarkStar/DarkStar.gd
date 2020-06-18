@@ -13,10 +13,12 @@ onready var anim = get_node("AnimationPlayer")
 func _ready():
 	System.set("darkStar", self)
 #	timer = get_node("Timer")
-	SignalManager.connect("PlayerTookDamage", self, "DamageFlash")
+	SignalManager.connect("PlayerTookDamage", self, "TakeDamage")
 	SignalManager.connect("PlayerDied", self, "HandlePlayerDeath")
 
-
+func TakeDamage(_none):
+	DamageFlash(_none)
+	
 func DamageFlash(_none):
 	anim.play("DamageFlash")
 

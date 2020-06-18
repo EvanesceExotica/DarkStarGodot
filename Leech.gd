@@ -6,8 +6,16 @@ var drainValue = 10
 # var b = "text"
 
 func DrainStar():
-	System.darkStar.
+	System.darkStar.hunger.AddDrainer()
 # Called when the node enters the scene tree for the first time.
+func StopDraining():
+	System.darkStar.hunger.RemoveDrainer()
+
+func Deconstruct():
+	#overrides deconstruct
+	StopDraining()
+	.Deconstruct()
+
 func _ready():
 	pass # Replace with function body.
 
