@@ -1,11 +1,28 @@
 extends Node2D
 
+var drainers = []
+var defaultHungerDrainValue : int = 50
+var currentHungerDrainValue : int = defaultHungerDrainValue
 var hungerTime = 20
 onready var darkStar = get_parent()
 onready var hungerBar = get_node("HungerBar")
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+
+func AddDrainer(leech):
+	drainers.append(leech)
+	#reset the drainHunger
+	hungerTime+=leech.drainValue
+	DrainHunger()
+
+func RemoveDrainer(leech):
+	drainers.erase(leech)
+	hungerTime-=leech.drainValue
+
+	#reset the drainHunger
+	DrainHunger()
+
 func StartHungerTimer():
 	$Timer.set_wait_time(hungerTime)
 	$Timer.start()

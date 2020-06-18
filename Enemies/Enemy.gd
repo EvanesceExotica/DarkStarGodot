@@ -27,6 +27,24 @@ func RipOutSoul():
 	self.modulate = Color.aliceblue
 	add_to_group("Soulless")
 	pass
+
+func KnockOutSoul(enemy):
+	#zero out velocity for both -- maybe make shockwave to show energy transfered into soul being knocked out
+	self.linear_velocity = Vector2.ZERO
+	enemy.linear_velocity = Vector2.ZERO
+	enemy.RipOutSoul()
+	self.RipOutSoul()
+
+func _on_Enemy_body_entered(body : Node) -> void:
+	#if we've collided with something
+	if bashableObject.beingBashed:
+		#and we were just bashed by the player
+		if body.is_in_group("Bashable"):
+			#if what we've collided with is another bashable enemy
+			KnockOutSoul(body)
+
+func _on_Enemy_body_exited(body : Node) -> void:
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -63,10 +63,21 @@ func Die():
 	print("Player died!")
 	SignalManager.emit_signal("PlayerDied")
 	ResetPosition()
-
-func FollowMouse():
+func _FollowMouse():
+	#mousePosition = get_viewport().get_mouse_position()
 	mousePosition = get_global_mouse_position()
 	var position = self.global_position
+	#print(mousePosition)
+	#var t = 0;
+	#var t = 
+	#var newMousePosition = Vector2(mousePosition.x + 20, mousePosition.y + 20)
+	basePosition = position.linear_interpolate(mousePosition, 0.05);
+
+func FollowMouse():
+	# mousePosition = get_global_mouse_position()
+	# var position = self.global_position
+	# var t = 0;
+	# basePosition = position.linear_interpolate(mousePosition, t);
 	$Tween.stop_all()
 	$Tween.interpolate_property(self, "basePosition", position, mousePosition, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
@@ -85,7 +96,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	if Input.is_action_pressed("right_click") && !slingShot.priming && !slingShot.launching && !bash.bashing:
-		FollowMouse()
+		_FollowMouse()
 		self.global_position = basePosition
 		#vfxContainer.makeTrail()
 		# if !vfxContainer.rippling:

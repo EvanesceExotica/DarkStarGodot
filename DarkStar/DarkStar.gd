@@ -34,6 +34,8 @@ func _on_DarkStar_body_entered(body):
 	# 	body.queue_free()
 	# 	hunger.AdjustHunger(10)
 
+func Drain():
+	pass
 func _on_DarkStar_body_exited(_body):
 	pass
 

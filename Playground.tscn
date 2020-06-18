@@ -23,14 +23,14 @@
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("MapView/Viewport")
 
-[sub_resource type="ViewportTexture" id=5]
+[sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("DistortMaskView/Viewport")
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
 shader = ExtResource( 12 )
 shader_param/displacement_amount = 18.0
-shader_param/displacement_mask = SubResource( 5 )
+shader_param/displacement_mask = SubResource( 2 )
 
 [sub_resource type="Environment" id=4]
 background_mode = 4
@@ -85,6 +85,14 @@ limit_left = -525
 limit_top = -600
 limit_right = 2600
 limit_bottom = 1600
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.5
+drag_margin_top = 0.5
+drag_margin_right = 0.5
+drag_margin_bottom = 0.5
 script = ExtResource( 10 )
 
 [node name="RemoteMap" type="RemoteTransform2D" parent="World/PlayerCamera"]

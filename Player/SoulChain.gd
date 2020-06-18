@@ -18,6 +18,7 @@ func StartChain():
 	# raycast.raycast.cast_to = to_local(System.player.global_position)
 
 	#this is the first segment in the chain. It'll chain from the dark star to the player
+	chaincast.SetActive()
 	chaincast.startTarget = System.darkStar
 	chaincast.endTarget = System.player
 

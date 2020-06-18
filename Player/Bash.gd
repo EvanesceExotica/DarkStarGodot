@@ -14,7 +14,6 @@ func _input(event):
 	if event.is_action_pressed("ui_bash"):
 		if bashableEnemy != null:
 			StartBash()
-#			bashableEnemy.bashableObject.BashMe()
 	if event.is_action_released("ui_bash"):
 		emit_signal("bashReleased")
 
