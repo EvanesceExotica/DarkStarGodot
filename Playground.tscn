@@ -74,7 +74,7 @@ position = Vector2( 1034.29, 613.838 )
 scale = Vector2( 39.333, 33.0478 )
 
 [node name="Enemy" parent="World" instance=ExtResource( 3 )]
-position = Vector2( 135.63, 392.32 )
+position = Vector2( 676.236, 585.772 )
 
 [node name="SafeZone" parent="World" instance=ExtResource( 9 )]
 position = Vector2( 1034.29, 613.838 )

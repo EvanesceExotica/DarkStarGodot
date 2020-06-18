@@ -14,6 +14,8 @@ position = Vector2( 376, 176 )
 collision_layer = 2
 collision_mask = 2
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 can_sleep = false
 script = ExtResource( 2 )
 

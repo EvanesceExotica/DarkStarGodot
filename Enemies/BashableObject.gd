@@ -14,6 +14,7 @@ func _ready():
 
 func BashMe():
 	pass # Replace with function body.
+	beingBashed = true
 	var origin = self.global_position
 	var mousePos = get_global_mouse_position() #Input.mousePosition
 	var trans = mousePos - origin;

@@ -36,6 +36,7 @@ func KnockOutSoul(enemy):
 	self.RipOutSoul()
 
 func _on_Enemy_body_entered(body : Node) -> void:
+	print("WE COLLIDED")
 	#if we've collided with something
 	if bashableObject.beingBashed:
 		#and we were just bashed by the player
