@@ -11,5 +11,10 @@ func handleDistortionEffect(effect):
 		print("child added")
 		distortions.add_child(effect)
 
+func hideDistortionEffect(effect):
+	effect.visible = false
+
+func displayDistortionEffect(effect):
+	effect.visible = true
 func handleDistortionParent(viewport):
 	distortions = viewport

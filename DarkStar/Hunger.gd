@@ -12,13 +12,13 @@ onready var hungerBar = get_node("HungerBar")
 
 func AddDrainer(leech):
 	drainers.append(leech)
+	currentHungerDrainValue+=leech.drainValue
 	#reset the drainHunger
-	hungerTime+=leech.drainValue
 	DrainHunger()
 
 func RemoveDrainer(leech):
 	drainers.erase(leech)
-	hungerTime-=leech.drainValue
+	currentHungerDrainValue-=leech.drainValue
 
 	#reset the drainHunger
 	DrainHunger()
@@ -41,7 +41,7 @@ func DrainHunger():
 	#bigger star gets faster it drains hunger?
 	#maybe keep feeding it to stave off disaster?
 	$Tween.stop_all()
-	$Tween.interpolate_property(hungerBar, "value", hungerBar.value, 0, 50, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property(hungerBar, "value", hungerBar.value, 0, currentHungerDrainValue, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 
 func BurnUpFuel():

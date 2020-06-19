@@ -30,7 +30,7 @@ func _ready():
 	vfxContainer.remove_child(emitter)
 	ObjectHandler.handleDistortionEffect(emitter)
 	distortionTransform.remote_path = emitter.get_path()
-	emitter.emitting = true
+	#emitter.emitting = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -93,11 +93,26 @@ func grabCamera(camera : Camera2D) -> void:
 func _process(delta):
 	pass
 	#if Input.is_action_pressed("right_click"):
+func StartEmitter():
+	emitter.emitting = true
+
+func StopEmitter():
+	emitter.emitting = false
 
 func _physics_process(delta):
 	if Input.is_action_pressed("right_click") && !slingShot.priming && !slingShot.launching && !bash.bashing:
 		_FollowMouse()
 		self.global_position = basePosition
+		if emitter.emitting == false:
+			emitter.emitting = true
+	elif slingShot.launching:
+		if emitter.emitting == false:
+			emitter.emitting = true
+	else:
+		if emitter.emitting == true:
+			emitter.emitting = false
+	
+
 		#vfxContainer.makeTrail()
 		# if !vfxContainer.rippling:
 		# 	vfxContainer.rippling = true

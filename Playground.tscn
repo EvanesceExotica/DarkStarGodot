@@ -35,6 +35,7 @@ shader_param/displacement_mask = SubResource( 2 )
 [sub_resource type="Environment" id=4]
 background_mode = 4
 glow_enabled = true
+glow_strength = 0.72
 glow_bloom = 0.05
 glow_blend_mode = 0
 
@@ -65,13 +66,13 @@ texture = ExtResource( 6 )
 
 [node name="StarFieldBackground" parent="World" instance=ExtResource( 4 )]
 
-[node name="DarkStar" parent="World" instance=ExtResource( 2 )]
-position = Vector2( 1032.26, 613.838 )
-
 [node name="RippleEffect" parent="World" instance=ExtResource( 5 )]
 modulate = Color( 1, 1, 1, 0.109804 )
 position = Vector2( 1034.29, 613.838 )
 scale = Vector2( 39.333, 33.0478 )
+
+[node name="DarkStar" parent="World" instance=ExtResource( 2 )]
+position = Vector2( 1032.26, 613.838 )
 
 [node name="Enemy" parent="World" instance=ExtResource( 3 )]
 position = Vector2( 676.236, 585.772 )

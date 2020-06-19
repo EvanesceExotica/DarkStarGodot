@@ -6,9 +6,11 @@ var drainValue = 10
 # var b = "text"
 
 func DrainStar():
+	#this will decrease the amount of time for the dark star to drain
 	System.darkStar.hunger.AddDrainer()
 # Called when the node enters the scene tree for the first time.
 func StopDraining():
+	#this will increase the amount of time for the dark star to drain when the leech is removed
 	System.darkStar.hunger.RemoveDrainer()
 
 func Deconstruct():

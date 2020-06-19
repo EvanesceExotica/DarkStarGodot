@@ -1,19 +1,20 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://DarkStar/star_blue_giant04.png" type="Texture" id=1]
 [ext_resource path="res://DarkStar/DarkStar.gd" type="Script" id=2]
+[ext_resource path="res://StarParticlesTemp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://DarkStar/star_white_giant03.png" type="Texture" id=4]
 [ext_resource path="res://DarkStar/DoomHandler.gd" type="Script" id=5]
 [ext_resource path="res://DarkStar/Hunger.gd" type="Script" id=6]
 [ext_resource path="res://EffectLibrary/ParticleTextures2/Static/Symbols/Circle.png" type="Texture" id=7]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 radius = 204.83
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 radius = 852.379
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "DamageFlash"
 length = 0.48
 tracks/0/type = "value"
@@ -52,9 +53,10 @@ script = ExtResource( 2 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0.317647, 0.32549, 1, 1 )
 position = Vector2( -4.65897, -9.10759e-05 )
 scale = Vector2( 0.124164, 0.126439 )
@@ -74,7 +76,7 @@ space_override = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoomHandler/GravityWell"]
 modulate = Color( 1, 1, 1, 0.12549 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Hunger" type="Node2D" parent="."]
 script = ExtResource( 6 )
@@ -100,6 +102,8 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="Hunger"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DamageFlash = SubResource( 4 )
+anims/DamageFlash = SubResource( 3 )
+
+[node name="Star" parent="." instance=ExtResource( 3 )]
 [connection signal="body_entered" from="." to="." method="_on_DarkStar_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_DarkStar_body_exited"]
