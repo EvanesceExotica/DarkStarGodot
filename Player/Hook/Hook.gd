@@ -9,7 +9,7 @@ var originPosition
 var firing = false
 var retracting = false
 var chainMaxLength = 500
-var throwSpeed = 400
+var throwSpeed = 1200
 var hasObjectHooked = false
 onready var collisionShape = get_node("CollisionShape2D")
 # Called when the node enters the scene tree for the first time.
@@ -44,7 +44,6 @@ func ChainExtending():
 	#chain.add_point(Vector2(0, 0))
 	#chain.points[0] = player.global_position
 	#print(self.position)
-	print(hookOrigin.position)
 	chain.points[0] = to_local(hookOrigin.global_position)#self.global_position
 	chain.points[1] = to_local(self.global_position)
 	#chain.points[1] = Vector2(0, 0)
