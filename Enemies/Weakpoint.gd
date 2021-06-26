@@ -72,7 +72,8 @@ func FireAtPlayer():
 	#beam.add_point(Vector2(80, 0))
 	beam.add_point(to_local(System.player.global_position))
 	anim.play("Fire")
-	SignalManager.emit_signal("PlayerTookDamage", -50)
+	SignalManager.emit_signal("PlayerTookDamage", -0.5)
+	#SignalManager.emit_signal("PlayerTookDamage", -50)
 # func _on_Weakpoint_input_event(viewport, event, shape_idx):
 # 	if event is InputEventMouseButton:
 # 		if (event.is_pressed() and event.button_index == BUTTON_LEFT):

@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "FSM",
+"language": "GDScript",
+"path": "res://GoaP/FSM/FSM.gd"
+}, {
+"base": "Node",
+"class": "FSMState",
+"language": "GDScript",
+"path": "res://GoaP/FSM/FSMState.gd"
+}, {
 "base": "Resource",
 "class": "MapIcon",
 "language": "GDScript",
@@ -30,6 +40,8 @@ _global_script_classes=[ {
 "path": "res://ExternalEffects/Trail/Trail2D.gd"
 } ]
 _global_script_class_icons={
+"FSM": "",
+"FSMState": "",
 "MapIcon": "",
 "MapSprite": "",
 "MapView": "",

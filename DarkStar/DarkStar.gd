@@ -9,7 +9,8 @@ extends Area2D
 onready var hunger = get_node("Hunger")
 #you have to rip out the souls of the enemies
 onready var anim = get_node("AnimationPlayer")
-
+signal DarkStarGrew
+signal DarkStarShrank
 func _ready():
 	System.set("darkStar", self)
 #	timer = get_node("Timer")
@@ -44,17 +45,23 @@ func _on_DarkStar_body_exited(_body):
 func _input(event):
 	pass
 
+
 func Grow(scaleAmount):
 	#when the dark star gets more fuel
 	var newScale = Vector2(self.scale.x + scaleAmount, self.scale.y+scaleAmount)
 	$Tween.interpolate_property(self, "scale", self.scale, newScale, 1.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
+	yield($Tween, "tween_completed")
+	emit_signal("DarkStarGrew")
 
 func Shrink(scaleAmount):
 	#when the dark star burns up its fuel or takes damage
 	var newScale = Vector2(self.scale.x - scaleAmount, self.scale.y-scaleAmount)
 	$Tween.interpolate_property(self, "scale", self.scale, newScale, 1.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
+	yield($Tween, "tween_completed")
+	emit_signal("DarkStarShrank")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -18,7 +18,7 @@ radius = 852.379
 resource_name = "DamageFlash"
 length = 0.48
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/path = NodePath("Hunger/InnerFuel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -53,12 +53,12 @@ script = ExtResource( 2 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-modulate = Color( 0.317647, 0.32549, 1, 1 )
-position = Vector2( -4.65897, -9.10759e-05 )
+[node name="OuterLight" type="Sprite" parent="."]
+modulate = Color( 0.317647, 0.32549, 1, 0.623529 )
+self_modulate = Color( 1, 1, 1, 0.631373 )
 scale = Vector2( 0.124164, 0.126439 )
 texture = ExtResource( 1 )
 
@@ -84,6 +84,7 @@ script = ExtResource( 6 )
 [node name="Timer" type="Timer" parent="Hunger"]
 
 [node name="HungerBar" type="TextureProgress" parent="Hunger"]
+visible = false
 margin_left = -76.7357
 margin_top = -78.7357
 margin_right = 435.264
@@ -101,9 +102,15 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="Hunger"]
 
+[node name="InnerFuel" type="Sprite" parent="Hunger"]
+modulate = Color( 0.317647, 0.32549, 1, 1 )
+scale = Vector2( 0.124164, 0.126439 )
+texture = ExtResource( 1 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DamageFlash = SubResource( 3 )
 
 [node name="Star" parent="." instance=ExtResource( 3 )]
+visible = false
 [connection signal="body_entered" from="." to="." method="_on_DarkStar_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_DarkStar_body_exited"]

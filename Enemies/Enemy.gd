@@ -25,6 +25,7 @@ func BurstAndDropSoul():
 func RipOutSoul():
 	print("OUR SOUL GOT RIPPED OUT")
 	self.modulate = Color.aliceblue
+	self.modulate = Color(1, 1, 1, 0.5);
 	add_to_group("Soulless")
 	pass
 
